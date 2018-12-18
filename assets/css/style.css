@@ -1,8 +1,5 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
+/*RESET*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,9 +25,8 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
+
+/*GLOBAL*/
 ol, ul {
 	list-style: none;
 }
@@ -48,26 +44,60 @@ table {
 }
 
 body {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+	line-height: 1;
 
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: white;
+	background: url('../images/bg-ship4.jpg');
+	filter: grayscale(0.5);
+	background-size: cover;
+}
 p {
 	text-align: center;
 }
 h2 {
-	margin: 25px auto;
+	margin: 20px auto;
+	font-size: 1.5em;
 	text-align: center;
 }
 
-img {
-	width: 250px;
-	height: 250px;
-	object-fit: cover;
-	margin: 15px;
-	box-sizing: border-box;
+hr {
+	border-top: 1px solid rgba(255,255,255,0.1);
+	margin: 5px 0;
 }
-.row {
-	margin-bottom: 50px !important;
+
+img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	margin: 10px;
+	box-sizing: border-box;
+	box-shadow: 1px 2px 8px rgba(255,255,255,0.1);
+	transition: 0.2s all ease-in-out;
+}
+
+/*GAME*/
+.hero {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background: rgba(0,0,0,0.9);
+	width: 100% !important;
+	height: 100vh !important;
+}
+
+#lessray-character img:hover {
+	box-shadow: 0px 0px 30px rgba(8, 107, 221, 0.7);
+}
+#luke-skywalker-character img:hover {
+	box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.7);
+}
+#yoda-character img:hover {
+	box-shadow: 0px 0px 30px rgba(89, 228, 8, 0.7);
+}
+#darth-vader-character img:hover {
+	box-shadow: 0px 0px 30px rgba(235, 7, 7, 0.7);
 }
 
 #fight-section {
@@ -83,6 +113,10 @@ img {
 	justify-content: space-around;
 	align-items: center;
 }
+#characters-available img,
+#enemies-available img {
+	cursor: pointer;
+}
 #enemies-available h2 {
 	
     text-align: center;
@@ -93,10 +127,20 @@ img {
 	margin: 50px auto;
 }
 #chosen-character,
-#defender-section,
+#enemy-section,
 #message-section {
 	text-align: center;
 }
 .character-image {
 	margin-top: 20px;
+}
+
+#characters-available h2 {
+	display: none;
+}
+#enemies-available h2 {
+	display: block;
+}
+#game-message p {
+	padding: 5px 0;
 }
