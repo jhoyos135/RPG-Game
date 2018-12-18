@@ -6,33 +6,45 @@ let enemiesDefeated = 0;
 let gameOver = false;
 
 //characters
-let lessray = {
-  name: "Ray",
-  health: 120,
-  counterAttack: 15,
-  attack: 15
-};
 
-let lukeSkywalker = {
-  name: "Luke Skywalker",
-  health: 100,
-  counterAttack: 15,
-  attack: 20
-};
+class Character {
+  constructor(name, health, counterAttack, attack) {
+    Object.assign(this, { name, health, counterAttack, attack })
+  }
+}
 
-let yoda = {
-  name: "Yoda",
-  health: 150,
-  counterAttack: 25,
-  attack: 20
-};
+const lessray = new Character('Ray', 120, 15, 15);
+const lukeSkywalker = new Character('Luke Skywalker', 150, 25, 20);
+const yoda = new Character('Yoda', 150, 25, 20);
+const darthVader = new Character('Darth Vader', 180, 25, 25);
 
-let darthVader = {
-  name: "Darth Vader",
-  health: 180,
-  counterAttack: 25,
-  attack: 25
-};
+// let lessray = {
+//   name: "Ray",
+//   health: 120,
+//   counterAttack: 15,
+//   attack: 15
+// };
+
+// let lukeSkywalker = {
+//   name: "Luke Skywalker",
+//   health: 100,
+//   counterAttack: 15,
+//   attack: 20
+// };
+
+// let yoda = {
+//   name: "Yoda",
+//   health: 150,
+//   counterAttack: 25,
+//   attack: 20
+// };
+
+// let darthVader = {
+//   name: "Darth Vader",
+//   health: 180,
+//   counterAttack: 25,
+//   attack: 25
+// };
 
 const initializeCharacter = (chosenCharacter) => {
   character.name = chosenCharacter.name;
