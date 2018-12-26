@@ -5,79 +5,55 @@ let enemy = {};
 let enemiesDefeated = 0;
 let gameOver = false;
 
-//characters
-
 class Character {
   constructor(name, health, counterAttack, attack) {
     Object.assign(this, { name, health, counterAttack, attack })
   }
 }
 
-const lessray = new Character('Ray', 120, 15, 15);
-const lukeSkywalker = new Character('Luke Skywalker', 150, 25, 20);
+class Helper {
+
+  static initializeCharacter (chosenCharacter) {
+      character.name = chosenCharacter.name;
+      character.health = chosenCharacter.health;
+      character.counterAttack = chosenCharacter.counterAttack;
+      character.attack = chosenCharacter.attack;
+    }
+
+  static initializeEnemy (chosenEnemy) {
+      enemy.name = chosenEnemy.name;
+      enemy.health = chosenEnemy.health;
+      enemy.counterAttack = chosenEnemy.counterAttack;
+      enemy.attack = chosenEnemy.attack;
+    }
+
+  // move characters to the enemies section
+  static moveToEnemies() {
+
+    $(".available-character").removeClass("available-character").addClass("enemy-character");
+    $("#enemies-available").append( $(".enemy-character") );
+
+}
+  }
+
+
+//characters
+const ray = new Character('Ray', 120, 15, 15);
+const luke = new Character('Luke Skywalker', 100, 25, 20);
 const yoda = new Character('Yoda', 150, 25, 20);
-const darthVader = new Character('Darth Vader', 180, 25, 25);
-
-// let lessray = {
-//   name: "Ray",
-//   health: 120,
-//   counterAttack: 15,
-//   attack: 15
-// };
-
-// let lukeSkywalker = {
-//   name: "Luke Skywalker",
-//   health: 100,
-//   counterAttack: 15,
-//   attack: 20
-// };
-
-// let yoda = {
-//   name: "Yoda",
-//   health: 150,
-//   counterAttack: 25,
-//   attack: 20
-// };
-
-// let darthVader = {
-//   name: "Darth Vader",
-//   health: 180,
-//   counterAttack: 25,
-//   attack: 25
-// };
-
-const initializeCharacter = (chosenCharacter) => {
-  character.name = chosenCharacter.name;
-  character.health = chosenCharacter.health;
-  character.counterAttack = chosenCharacter.counterAttack;
-  character.attack = chosenCharacter.attack;
-}
-
-const initializeEnemy = (chosenEnemy) => {
-  enemy.name = chosenEnemy.name;
-  enemy.health = chosenEnemy.health;
-  enemy.counterAttack = chosenEnemy.counterAttack;
-  enemy.attack = chosenEnemy.attack;
-}
-
-// move characters to the enemies section
-const moveToEnemies = () => {
-
-  $(".available-character").removeClass("available-character").addClass("enemy-character");
-  $("#enemies-available").append( $(".enemy-character") );
-
-}
+const vader = new Character('Darth Vader', 180, 25, 25);
 
 // reset game
-const resetGame = () => {
+const reset = () => {
 
   // Reset all
-  $("#lessray-character .health").html(lessray.health + ' HP');
-  $("#luke-skywalker-character .health ").html(lukeSkywalker.health + ' HP');
-  $("#yoda-character .health").html(yoda.health + ' HP');
-  $("#darth-vader-character .health").html(darthVader.health + ' HP');
+  $("#lessray-character .health").text(ray.health + ' HP');
+  $("#luke-skywalker-character .health ").text(luke.health + ' HP');
+  $("#yoda-character .health").text(yoda.health + ' HP');
+  $("#darth-vader-character .health").text(vader.health + ' HP');
 
   $(".character-image").removeClass("chosen-character enemy-character enemy").addClass("available-character");
+  
   let available = $(".available-character").show();
   $("#characters-available").html(available);
 
@@ -107,22 +83,21 @@ $(document).ready( () => {
     $("#enemies-available").show();
 
     if(characterSelected === false) {
+
       $("#game-message").empty();
-
-      initializeCharacter(lessray);
-      characterSelected = true;
-
-      $("#lessray-character").removeClass("available-character").addClass("chosen-character");
+      $(this).removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
 
-      moveToEnemies();
+      Helper.initializeCharacter(ray);
+      characterSelected = true;
+      Helper.moveToEnemies();
 
     } else if ((characterSelected === true) && (enemySelected === false)) {
 
       if( $("#lessray-character").hasClass("enemy-character") ) {
         $("#game-message").empty();
 
-        initializeEnemy(lessray);
+        Helper.initializeEnemy(ray);
         enemySelected = true;
 
         $("#lessray-character").removeClass("enemy-character").addClass("enemy");
@@ -137,22 +112,21 @@ $(document).ready( () => {
     $("#enemies-available").show();
 
     if(characterSelected === false) {
+
       $("#game-message").empty();
-
-      initializeCharacter(lukeSkywalker);
-      characterSelected = true;
-
       $("#luke-skywalker-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
 
-      moveToEnemies();
+      Helper.initializeCharacter(luke);
+      characterSelected = true;
+      Helper.moveToEnemies();
 
     } else if ((characterSelected === true) && (enemySelected === false)) {
 
       if($("#luke-skywalker-character").hasClass("enemy-character")) {
         $("#game-message").empty();
 
-        initializeEnemy(lukeSkywalker);
+        Helper.initializeEnemy(luke);
         enemySelected = true;
 
         $("#luke-skywalker-character").removeClass("enemy-character").addClass("enemy");
@@ -167,22 +141,21 @@ $(document).ready( () => {
     $("#enemies-available").show();
 
     if(characterSelected == false) {
+
       $("#game-message").empty();
-
-      initializeCharacter(yoda);
-      characterSelected = true;
-
       $("#yoda-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
 
-      moveToEnemies();
+      Helper.initializeCharacter(yoda);
+      characterSelected = true;
+      Helper.moveToEnemies();
 
     } else if ((characterSelected === true) && (enemySelected === false)) {
       
       if($("#yoda-character").hasClass("enemy-character")) {
         $("#game-message").empty();
 
-        initializeEnemy(yoda);
+        Helper.initializeEnemy(yoda);
         enemySelected = true;
 
         $("#yoda-character").removeClass("enemy-character").addClass("enemy");
@@ -197,22 +170,21 @@ $(document).ready( () => {
     $("#enemies-available").show();
 
     if(characterSelected === false) {
+
       $("#game-message").empty();
-
-      initializeCharacter(darthVader);
-      characterSelected = true;
-
       $("#darth-vader-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
 
-      moveToEnemies();
+      Helper.initializeCharacter(vader);
+      characterSelected = true;
+      Helper.moveToEnemies();
 
     } else if ((characterSelected === true) && (enemySelected === false)) {
 
       if($("#darth-vader-character").hasClass("enemy-character")) {
         $("#game-message").empty();
 
-        initializeEnemy(darthVader);
+        Helper.initializeEnemy(vader);
         enemySelected = true;
 
         $("#darth-vader-character").removeClass("enemy-character").addClass("enemy");
@@ -251,8 +223,11 @@ $(document).ready( () => {
 
         } else {
 
+          $("#enemies-available").hide();
           gameOver = true;
+
           $("#game-message").html(`<p>You were defeated by ${enemy.name} </br>`);
+
           $("#restart").show();
           $("#attack").hide();
 
@@ -269,8 +244,14 @@ $(document).ready( () => {
 
         $(".enemy").hide();
 
+        if(enemiesDefeated === 2) {
+          $("#enemies-available h2").hide();
+        }
+
         // you have won
         if (enemiesDefeated === 3) {
+
+          $("#enemies-available").hide();
           gameOver = true;
 
           $("#game-message").html(`
@@ -294,8 +275,9 @@ $(document).ready( () => {
 
   $("#restart").on("click", () => {
 
-    resetGame();
+    reset();
     $("#attack").show();
+    $("#enemies-available h2").show();
 
   });
 
