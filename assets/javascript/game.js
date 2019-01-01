@@ -34,6 +34,7 @@ class Helper {
     $("#enemies-available").append( $(".enemy-character") );
 
 }
+
   }
 
 
